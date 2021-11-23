@@ -1,0 +1,32 @@
+<div class="container-fluid search-page align-items-center d-flex">
+
+    <div class="container  ">
+        <div class="row justify-content-center">
+            <form #ingrForm="ngForm" (ngSubmit)="onAddIngr(ingrForm)" class="search-form row">
+                <input class="col-lg-2 col-sm-12" type="number" name="quantity" id="ingr-quantity"
+                    placeholder="Quantity" ngModel tooltip="Default is 100">
+                <select class="col-lg-2 col-sm-12" name="unit" id="unit" ngModel [ngModel]="'gr'">
+                    <option *ngFor="let unit of units" [value]="unit.value">{{unit.viewValue}}</option>
+                </select>
+                <input class="col-lg-6 col-sm-12" type="text" name="ingr" id="ingr" placeholder="Enter ingredient"
+                    ngModel required>
+
+                <button class="col-lg-1 offset-lg-1 col-sm-12" type="submit" [disabled]="ingrForm.invalid">+</button>
+            </form>
+        </div>
+
+        <div class="row justify-content-center">
+            <ul class="ingr-list justify-content-center">
+                <li *ngFor="let ingr of ingrs | async">
+                    <span>{{ingr}}</span>
+                    <button (click)="onDeleteIngr(ingr)">X</button>
+                </li>
+            </ul>
+        </div>
+
+        <div class="row justify-content-center" *ngIf="(ingrs | async)">
+            <button class="btn btn-success animate" (click)="onAnalyze()"> Analyze </button>
+        </div>
+
+    </div>
+</div>

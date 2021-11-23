@@ -1,0 +1,69 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <accordion [isAnimated]="true" [closeOthers]="true">
+        <accordion-group
+          *ngFor="let group of ingrArray; let i = index"
+          [heading]="group"
+          (isOpenChange)="log($event, i)"
+        >
+          <table>
+            <caption>
+              Total calories:
+              {{
+                data?.calories
+              }}
+            </caption>
+            <thead>
+              <tr>
+                <th scope="col">Label</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Unit</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of singleDataArray">
+                <td data-label="Label">{{ item.label }}</td>
+                <td data-label="Quantity">{{ item.quantity }}</td>
+                <td data-label="col">{{ item.unit }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </accordion-group>
+      </accordion>
+    </div>
+  </div>
+
+  <div class="row justify-content-center mt-4 mb-3">
+    <button class="btn btn-success" (click)="getTotalNut()">
+      Total Nutrition
+    </button>
+  </div>
+
+  <div class="row" *ngIf="dataArray.length != 0">
+    <div class="col-12">
+      <table>
+        <caption>
+          Total calories:
+          {{
+            totalNutData.calories
+          }}
+        </caption>
+        <thead>
+          <tr>
+            <th scope="col">Label</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Unit</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of dataArray">
+            <td data-label="Label">{{ item.label }}</td>
+            <td data-label="Quantity">{{ item.quantity }}</td>
+            <td data-label="col">{{ item.unit }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
